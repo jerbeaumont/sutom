@@ -1,0 +1,60 @@
+:root {
+  --title-size: 3em;
+
+  --cell-size: 70px;
+  --cell-padding: 4px;
+
+  --color-normal: #0077c7;
+  --color-not-found: rgb(112, 112, 112);
+  --color-found: #e7002a;
+  --color-wrong-place: #ffbd00;
+  --color-background: rgb(43, 43, 43);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--color-background);
+  font-family: "Roboto Medium", Ubuntu, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: white;
+  font-size: var(--title-size);
+  margin-bottom: 48px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-normal);
+}
+
+.cell {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-transform: uppercase;
+
+  padding: var(--cell-padding);
+  
+  color: white;
+  border: 1px solid white;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  font-size: var(--cell-size);
+}
+
+.found {
+  background-color: var(--color-found);
+}
+
+.not-found {
+  background-color: var(--color-not-found);
+}
+
+.wrong {
+  background-color: var(--color-wrong-place);
+}
