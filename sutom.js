@@ -1,11 +1,6 @@
 const word = atob('Y2FtYXJhZGU=');
 
-const audioFound = new Audio('sound/found.wav');
-const audioWrong = new Audio('sound/wrong.wav');
-const audioNotFound = new Audio('sound/not-found.wav');
-const audioWin = new Audio('sound/win.mp3');
-
-const delay = 360;
+const delay = 3e2;
 const container = document.getElementById('container');
 
 const handleKeywboard = (event) => {
@@ -38,6 +33,7 @@ const checkWord = async() => {
   }
 
   if (letters.join('') === word) {
+    const audioWin = new Audio('sound/win.mp3');
     audioWin.play();
     document.removeEventListener('keydown', handleKeywboard);
     return;
@@ -62,18 +58,26 @@ const checkLetter = (cell, index) => {
 
   if (cell.innerHTML === letter) {
     cell.classList.add('found');
+
+    const audioFound = new Audio('sound/found.wav');
     audioFound.play();
+
     return letter;
   }
 
   if (word.includes(cell.innerHTML)) {
     cell.classList.add('wrong');
+
+    const audioWrong = new Audio('sound/wrong.wav');
     audioWrong.play();
+
     return '.';
   }
 
   cell.classList.add('not-found');
+  const audioNotFound = new Audio('sound/not-found.wav');
   audioNotFound.play();
+
   return '.';
 }
 

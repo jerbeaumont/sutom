@@ -2,13 +2,14 @@
   --title-size: 3em;
 
   --cell-size: 70px;
+  --cell-font-size: calc(var(--cell-size) - 20px);
   --cell-padding: 4px;
 
   --color-normal: #0077c7;
-  --color-not-found: rgb(112, 112, 112);
+  --color-not-found: #707070;
   --color-found: #e7002a;
   --color-wrong-place: #ffbd00;
-  --color-background: rgb(43, 43, 43);
+  --color-background: #2b2b2b;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
   align-items: center;
 
   background-color: var(--color-background);
-  font-family: "Roboto Medium", Ubuntu, Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
@@ -34,7 +35,7 @@ h1 {
 
 .cell {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   text-transform: uppercase;
 
@@ -44,7 +45,7 @@ h1 {
   border: 1px solid white;
   width: var(--cell-size);
   height: var(--cell-size);
-  font-size: var(--cell-size);
+  font-size: var(--cell-font-size);
 }
 
 .found {
