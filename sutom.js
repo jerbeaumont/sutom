@@ -1,11 +1,22 @@
 const word = atob('Y2FtYXJhZGU=');
 
-const delay = 3e2;
+const lettersCount = {};
+let lettersFound = {};
+
+let checking = false;
+const checkDelay = 270;
+
 const container = document.getElementById('container');
 
-const handleKeywboard = (event) => {
+const handleKeywboard = async (event) => {
+  if (checking) {
+    return;
+  }
+
   if (event.key === 'Enter') {
-    checkWord();
+    checking = true;
+    await checkWord();
+    checking = false;
     return;
   }
 
@@ -26,37 +37,36 @@ const checkWord = async() => {
     return;
   }
 
-  const letters = [];
+  const nextLetters = [];
   for (let i = 0; i < cells.length; i++) {
-    await sleep(delay);
-    letters.push(checkLetter(cells[i], i));
+    await sleep(checkDelay);
+    nextLetters.push(checkLetter(cells[i], i));
   }
 
-  if (letters.join('') === word) {
+  if (nextLetters.join('') === word) {
     const audioWin = new Audio('sound/win.mp3');
     audioWin.play();
     document.removeEventListener('keydown', handleKeywboard);
     return;
   }
 
-  addLine(letters);
-}
+  // Reset letters found for next turn
+  lettersFound = {};
 
-const sleep = (delay) => {
-  let interval;
-
-  return new Promise((resolve) => {
-    interval = setInterval(() => {
-      clearInterval(interval);
-      resolve();
-    }, delay);
-  });
+  addLine(nextLetters);
 }
 
 const checkLetter = (cell, index) => {
   const letter = word.charAt(index);
+  const cellLetter = cell.innerHTML;
 
-  if (cell.innerHTML === letter) {
+  if (lettersFound[cellLetter]) {
+    lettersFound[cellLetter]++;
+  } else {
+    lettersFound[cellLetter] = 1;
+  }
+
+  if (cellLetter === letter) {
     cell.classList.add('found');
 
     const audioFound = new Audio('sound/found.wav');
@@ -65,7 +75,11 @@ const checkLetter = (cell, index) => {
     return letter;
   }
 
-  if (word.includes(cell.innerHTML)) {
+
+  if (
+    word.includes(cellLetter) &&
+    lettersFound[cellLetter] <= lettersCount[cellLetter]
+  ) {
     cell.classList.add('wrong');
 
     const audioWrong = new Audio('sound/wrong.wav');
@@ -100,7 +114,7 @@ const addLetter = (letter) => {
   const cells = document.querySelectorAll('.current .cell');
   const cell = Array.from(cells).find((cell) => cell.innerHTML === '.');
   if (!cell) {
-    return cell;
+    return;
   }
 
   cell.innerHTML = letter;
@@ -121,14 +135,27 @@ const removeLetter = () => {
   cell.innerHTML = '.';
 }
 
+const sleep = (delay) => {
+  return new Promise((resolve) => setTimeout(() => resolve(), delay));
+}
+
 const init = () => {
   document.addEventListener('keydown', handleKeywboard);
 
   let i = 0;
+  const l = word.length;
   const initWord = [];
-  for (i; i < word.length; i++) {
+  for (i; i < l; i++) {
+    const letter = word.charAt(i);
+
+    if (lettersCount[letter]) {
+      lettersCount[letter]++;
+    } else {
+      lettersCount[letter] = 1;
+    }
+
     if (i === 0) {
-      initWord.push(word.charAt(i));
+      initWord.push(letter);
       continue;
     }
 
