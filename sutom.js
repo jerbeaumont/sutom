@@ -47,6 +47,12 @@ const checkWord = async() => {
     const audioWin = new Audio('sound/win.mp3');
     audioWin.play();
     document.removeEventListener('keydown', handleKeywboard);
+
+    // Add winning image
+    const body = document.querySelector('body');
+    body.removeChild(container);
+    const image = `<img class="picture" src="images/win.png" />`
+    body.insertAdjacentHTML('beforeend', image);
     return;
   }
 

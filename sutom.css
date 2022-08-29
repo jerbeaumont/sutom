@@ -59,3 +59,8 @@ h1 {
 .wrong {
   background-color: var(--color-wrong-place);
 }
+
+.picture {
+  width: 50%;
+  margin: auto;
+}
