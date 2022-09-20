@@ -1,8 +1,8 @@
 :root {
-  --title-size: 3em;
+  --title-size: 3vw;
 
-  --cell-size: 70px;
-  --cell-font-size: calc(var(--cell-size) - 20px);
+  --cell-size: 6vw;
+  --cell-font-size: calc(var(--cell-size) - 1.5vw);
   --cell-padding: 4px;
 
   --color-normal: #0077c7;
