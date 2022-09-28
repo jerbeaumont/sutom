@@ -1,4 +1,4 @@
-const word = atob('YmlsbG91dGU=');
+const word = atob('QXRoZW5haXM=');
 
 const lettersCount = {};
 let lettersFound = {};
@@ -51,7 +51,7 @@ const checkWord = async() => {
     // Add winning image
     const body = document.querySelector('body');
     body.removeChild(container);
-    const image = `<img class="picture" src="images/win.jpg" />`
+    const image = `<img class="picture" src="images/win.jpng" />`
     body.insertAdjacentHTML('beforeend', image);
     return;
   }
