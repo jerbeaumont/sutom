@@ -51,7 +51,7 @@ const checkWord = async() => {
     // Add winning image
     const body = document.querySelector('body');
     body.removeChild(container);
-    const image = `<img class="picture" src="images/win.jpng" />`
+    const image = `<img class="picture" src="images/win.png" />`
     body.insertAdjacentHTML('beforeend', image);
     return;
   }
