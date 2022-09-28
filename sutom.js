@@ -1,4 +1,4 @@
-const word = atob('QXRoZW5haXM=');
+const word = atob('YXRoZW5haXM=');
 
 const lettersCount = {};
 let lettersFound = {};
@@ -8,7 +8,7 @@ const checkDelay = 270;
 
 const container = document.getElementById('container');
 
-const handleKeywboard = async (event) => {
+const handleKeyboard = async (event) => {
   if (checking) {
     return;
   }
@@ -28,6 +28,27 @@ const handleKeywboard = async (event) => {
   if (event.which >= 65 && event.which <= 90) {
     addLetter(event.key);
   }
+}
+
+const handleVirtualKeyboard = async (event) => {
+  if (checking) {
+    return;
+  }
+  
+  const letter = event.target.dataset.letter;
+  if (letter === 'enter') {
+    checking = true;
+    await checkWord();
+    checking = false;
+    return;
+  }
+
+  if (letter === 'backspace') {
+    removeLetter();
+    return;
+  }
+
+  addLetter(letter);
 }
 
 const checkWord = async() => {
@@ -65,6 +86,7 @@ const checkWord = async() => {
 const checkLetter = (cell, index) => {
   const letter = word.charAt(index);
   const cellLetter = cell.innerHTML;
+  const keyboardLetter = document.querySelector(`[data-letter="${cellLetter}"]`);
 
   if (lettersFound[cellLetter]) {
     lettersFound[cellLetter]++;
@@ -74,6 +96,8 @@ const checkLetter = (cell, index) => {
 
   if (cellLetter === letter) {
     cell.classList.add('found');
+    keyboardLetter.classList.remove(...['wrong', 'not-found', 'found']);
+    keyboardLetter.classList.add('found');
 
     const audioFound = new Audio('sound/found.wav');
     audioFound.play();
@@ -88,6 +112,14 @@ const checkLetter = (cell, index) => {
   ) {
     cell.classList.add('wrong');
 
+    if (
+      !keyboardLetter.classList.contains('wrong') &&
+      !keyboardLetter.classList.contains('not-found') &&
+      !keyboardLetter.classList.contains('found')
+    ) {
+      keyboardLetter.classList.add('wrong');
+    }
+
     const audioWrong = new Audio('sound/wrong.wav');
     audioWrong.play();
 
@@ -95,6 +127,14 @@ const checkLetter = (cell, index) => {
   }
 
   cell.classList.add('not-found');
+
+  if (
+    !keyboardLetter.classList.contains('not-found') &&
+    !keyboardLetter.classList.contains('found')
+  ) {
+    keyboardLetter.classList.add('not-found');
+  }
+
   const audioNotFound = new Audio('sound/not-found.wav');
   audioNotFound.play();
 
@@ -146,7 +186,12 @@ const sleep = (delay) => {
 }
 
 const init = () => {
-  document.addEventListener('keydown', handleKeywboard);
+  document.addEventListener('keydown', handleKeyboard);
+  // Manage virtual keyboard
+  const elements = document.getElementsByClassName('keyboard-letter');
+  Array.from(elements).forEach(function(element) {
+    element.addEventListener('click', handleVirtualKeyboard);
+  });
 
   let i = 0;
   const l = word.length;

@@ -10,6 +10,12 @@
   --color-found: #e7002a;
   --color-wrong-place: #ffbd00;
   --color-background: #2b2b2b;
+
+  --keyboard-margin: 32px;
+  --keyboard-letter-margin: 4px;
+  --keyboard-letter-color: white;
+  --keyboard-letter-font-size: 18px;
+  --keyboard-letter-size: 45px;
 }
 
 body {
@@ -63,4 +69,31 @@ h1 {
 .picture {
   width: 50%;
   margin: auto;
+}
+
+.keyboard {
+  margin-top: var(--keyboard-margin);
+  width: 500px;
+}
+
+.keyboard-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.keyboard-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: var(--keyboard-letter-margin);
+
+  font-size: var(--keyboard-letter-font-size);
+  height: var(--keyboard-letter-size);
+  color: var(--keyboard-letter-color);
+  border: 1px solid var(--keyboard-letter-color);
+  border-radius: 8px;
+
+  user-select: none;
+  cursor: pointer;
 }
