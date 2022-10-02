@@ -67,7 +67,11 @@ const checkWord = async() => {
   if (nextLetters.join('') === word) {
     const audioWin = new Audio('sound/win.mp3');
     audioWin.play();
-    document.removeEventListener('keydown', handleKeywboard);
+
+    // Clean listeners and remove virtual keyboard
+    document.removeEventListener('keydown', handleKeyboard);
+    document.removeEventListener('click', handleVirtualKeyboard);
+    document.querySelector('.keyboard').remove();
 
     // Add winning image
     const body = document.querySelector('body');
