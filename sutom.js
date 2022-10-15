@@ -1,4 +1,5 @@
-const word = atob('YXRoZW5haXM=');
+const params = new URLSearchParams(window.location.search);
+const word = atob(params.get('word')) || atob('Y2FtYXJhZGU=');
 
 const lettersCount = {};
 let lettersFound = {};
@@ -72,12 +73,6 @@ const checkWord = async() => {
     document.removeEventListener('keydown', handleKeyboard);
     document.removeEventListener('click', handleVirtualKeyboard);
     document.querySelector('.keyboard').remove();
-
-    // Add winning image
-    const body = document.querySelector('body');
-    body.removeChild(container);
-    const image = `<img class="picture" src="images/win.png" />`
-    body.insertAdjacentHTML('beforeend', image);
     return;
   }
 
