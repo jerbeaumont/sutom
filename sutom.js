@@ -1,5 +1,10 @@
 const params = new URLSearchParams(window.location.search);
-const word = atob(params.get('word')) || atob('Y2FtYXJhZGU=');
+
+let word = atob('Y2FtYXJhZGU=');
+
+if (params.has('word')) {
+  word = atob(params.get('word'));
+}
 
 const lettersCount = {};
 let lettersFound = {};
