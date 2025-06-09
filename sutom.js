@@ -74,7 +74,7 @@ const checkWord = async() => {
     document.removeEventListener('click', handleVirtualKeyboard);
     document.querySelector('.keyboard').remove();
 
-    let fairePart = '<img src="FairePart.svg" alt="faire-part" vspace=30 vw width=1000 vw/>';
+    let fairePart = '<img src="FairePart.svg" alt="faire-part" vspace=30vw/>';
 
       // container.insertAdjacentHTML('beforeend', fairePart);
     container.insertAdjacentHTML('afterend', fairePart);

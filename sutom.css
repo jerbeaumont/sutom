@@ -1,12 +1,12 @@
 :root {
-  --body-padding: 50px;
+  --body-padding: 5vw;
 
   --welcome_text-size: 70vw;
   --welcome_text-font-size: 2vw;
 
   --cell-size: 6vw;
   --cell-font-size: calc(var(--cell-size) - 1.5vw);
-  --cell-padding: 4px;
+  --cell-padding: 0.1vw;
 
   --color-normal: #0077c7;
   --color-not-found: #707070;
@@ -14,11 +14,11 @@
   --color-wrong-place: #ffbd00;
   --color-background: #2b2b2b;
 
-  --keyboard-margin: 32px;
-  --keyboard-letter-margin: 4px;
+  --keyboard-margin: 3vw;
+  --keyboard-letter-margin: 0.1vw;
   --keyboard-letter-color: white;
-  --keyboard-letter-font-size: 18px;
-  --keyboard-letter-size: 45px;
+  --keyboard-letter-font-size: 2vw;
+  --keyboard-letter-size: 3vw;
 }
 
 body {
