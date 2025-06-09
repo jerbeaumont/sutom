@@ -52,6 +52,26 @@ body {
     
 }
 
+/* .image { */
+/*     display: block; */
+/*     max-width: 100%; */
+    
+/*     /\* width: 60vw; *\/ */
+/*     /\* height: auto; *\/ */
+/*     /\* justify-content: center; *\/ */
+/*     /\* align-items: center; *\/ */
+
+/*     padding-top: 2vw; */
+/* } */
+
+img.big_image {
+    width:75%;
+    
+    -ms-interpolation-mode:bicubic;
+
+    padding-top: 2vw;
+} 
+
 .cell {
   display: flex;
   align-items: center;
