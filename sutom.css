@@ -2,7 +2,7 @@
   --body-padding: 50px;
 
   --welcome_text-size: 70vw;
-  --welcome_text-font-size: 30px;
+  --welcome_text-font-size: 2vw;
 
   --cell-size: 6vw;
   --cell-font-size: calc(var(--cell-size) - 1.5vw);
@@ -43,7 +43,7 @@ body {
     justify-content: center;
     text-align: center;
 
-    padding-bottom: 30px;
+    padding-bottom: 2vw;
 
     color: white;
     width: var(--welcome_text-size);

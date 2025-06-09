@@ -74,7 +74,7 @@ const checkWord = async() => {
     document.removeEventListener('click', handleVirtualKeyboard);
     document.querySelector('.keyboard').remove();
 
-    let fairePart = '<img src="FairePart.svg" alt="faire-part" vspace=50px width=1000/>';
+    let fairePart = '<img src="FairePart.svg" alt="faire-part" vspace=30 vw width=1000 vw/>';
 
       // container.insertAdjacentHTML('beforeend', fairePart);
     container.insertAdjacentHTML('afterend', fairePart);
@@ -179,7 +179,8 @@ const removeLetter = () => {
     return cell.innerHTML !== '.'
   });
 
-  if (!cell || index === word.length-1) {
+    // if (!cell || index === word.length-1) {
+  if (!cell || index === word.length) {
     return;
   }
 
