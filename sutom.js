@@ -1,10 +1,5 @@
 const params = new URLSearchParams(window.location.search);
-
-let word = atob('Y2FtYXJhZGU=');
-
-if (params.has('word')) {
-  word = atob(params.get('word'));
-}
+const word = atob(params.get('word') || 'c29lbm4=');
 
 const lettersCount = {};
 let lettersFound = {};
@@ -78,6 +73,12 @@ const checkWord = async() => {
     document.removeEventListener('keydown', handleKeyboard);
     document.removeEventListener('click', handleVirtualKeyboard);
     document.querySelector('.keyboard').remove();
+
+    let fairePart = '<img src="FairePart.svg" alt="faire-part" vspace=50px width=1000/>';
+
+      // container.insertAdjacentHTML('beforeend', fairePart);
+    container.insertAdjacentHTML('afterend', fairePart);
+
     return;
   }
 
@@ -209,10 +210,10 @@ const init = () => {
       lettersCount[letter] = 1;
     }
 
-    if (i === 0) {
-      initWord.push(letter);
-      continue;
-    }
+    // if (i === 0) {
+    //   initWord.push(letter);
+    //   continue;
+    // }
 
     initWord.push('.');
   }
